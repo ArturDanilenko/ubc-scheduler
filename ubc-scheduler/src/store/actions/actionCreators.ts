@@ -1,4 +1,9 @@
-import * as actionTypes from "./actionTypes"
+import { 
+  IArticle,
+  ArticleAction,
+  DispatchType
+} from "../../types/commonTypes"
+import * as actionTypes from "../actionTypes"
 
 export function addArticle(article: IArticle) {
   const action: ArticleAction = {
