@@ -4,12 +4,16 @@ import "./styles.css"
 
 import { Article } from "./components/Article"
 import { AddArticle } from "./components/AddArticle"
-import { addArticle, removeArticle } from "./store/actionCreators"
+import { addArticle, removeArticle } from "./store/actions/actionCreators"
 import { Dispatch } from "redux"
+import { 
+  IArticle,
+  ApplicationState
+} from "./types/commonTypes"
 
 const App: React.FC = () => {
-  const articles: readonly IArticle[] = useSelector(
-    (state: ArticleState) => state.articles,
+  const articles: readonly IArticle[]|undefined = useSelector(
+    (state: ApplicationState) => state.articleState?.articles,
     shallowEqual
   )
 
@@ -24,13 +28,13 @@ const App: React.FC = () => {
     <main>
       <h1>My Articles</h1>
       <AddArticle saveArticle={saveArticle} />
-      {articles.map((article: IArticle) => (
+      {articles ? articles.map((article: IArticle) => (
         <Article
           key={article.id}
           article={article}
           removeArticle={removeArticle}
         />
-      ))}
+      )) : <></>}
     </main>
   )
 }

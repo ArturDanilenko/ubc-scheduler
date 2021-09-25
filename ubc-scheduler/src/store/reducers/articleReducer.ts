@@ -1,6 +1,11 @@
-import * as actionTypes from "./actionTypes"
+import * as actionTypes from "../actionTypes";
+import {
+  ArticleState,
+  ArticleAction,
+  IArticle
+} from "../../types/commonTypes";
 
-const initialState: ArticleState = {
+export const initialArticleState: ArticleState = {
   articles: [
     {
       id: 1,
@@ -17,8 +22,8 @@ const initialState: ArticleState = {
   ],
 }
 
-const reducer = (
-    state: ArticleState = initialState,
+const articleReducer = (
+    state: ArticleState = initialArticleState,
     action: ArticleAction
   ): ArticleState => {
     switch (action.type) {
@@ -40,8 +45,9 @@ const reducer = (
           ...state,
           articles: updatedArticles,
         }
+      default: 
+        return state;
     }
-    return state
   }
   
-  export default reducer
+  export default articleReducer;
