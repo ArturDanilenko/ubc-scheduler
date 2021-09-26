@@ -1,3 +1,4 @@
+/* eslint-disable*/
 import { 
   IArticle,
   ArticleAction,
@@ -7,8 +8,8 @@ import * as actionTypes from "../actionTypes"
 
 export function addArticle(article: IArticle) {
   const action: ArticleAction = {
-    type: actionTypes.ADD_ARTICLE,
-    article,
+    type: actionTypes.ADD_ARTICLE, //action being done
+    article, //item we are doing it to
   }
 
   return simulateHttpRequest(action)

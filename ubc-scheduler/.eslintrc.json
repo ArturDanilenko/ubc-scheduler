@@ -21,16 +21,29 @@
     ],
     "rules": {
         "import/extensions": [
-            "error",
-            "ignorePackages",
-            
+            "error", 
+            // "always",
+            // {
+            //   "js": "never",
+            //   "jsx": "never",
+            //   "ts": "never",
+            //   "tsx": "never",
+            //   "ignorePackages": true,
+            //   "pattern":
             {
-              "js": "never",
-              "jsx": "never",
-              "ts": "never",
-              "tsx": "never"
+                  "js": "never",
+                  "jsx": "never",
+                  "ts": "never",
+                  "tsx": "never"
+
             }
-        ]
+            // }
+        ],
+        "indent" : ["error", 4],
+        "comma-dangle" : ["error", {"functions": "never"}],
+        "no-use-before-define": ["error", { "functions": false, "classes": false, "variables": false }],
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "linebreak-style" : ["error", "windows"]
         
     }
 }

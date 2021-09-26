@@ -1,3 +1,4 @@
+/* eslint-disable*/
 import {combineReducers} from 'redux';
 import { ApplicationState } from '../../types/commonTypes';
 import articleReducer from './articleReducer';

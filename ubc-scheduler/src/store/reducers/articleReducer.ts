@@ -1,3 +1,4 @@
+/* eslint-disable*/
 import * as actionTypes from "../actionTypes";
 import {
   ArticleState,
@@ -5,7 +6,7 @@ import {
   IArticle
 } from "../../types/commonTypes";
 
-export const initialArticleState: ArticleState = {
+export const initialArticleState: ArticleState  = {
   articles: [
     {
       id: 1,
@@ -21,6 +22,7 @@ export const initialArticleState: ArticleState = {
     },
   ],
 }
+//the actual state machine
 
 const articleReducer = (
     state: ArticleState = initialArticleState,
@@ -34,7 +36,7 @@ const articleReducer = (
           body: action.article.body,
         }
         return {
-          ...state,
+          ...state, //goes one level lower to access all members
           articles: state.articles.concat(newArticle),
         }
       case actionTypes.REMOVE_ARTICLE:

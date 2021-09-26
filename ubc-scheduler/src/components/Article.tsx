@@ -1,3 +1,4 @@
+/* eslint-disable*/
 import * as React from "react"
 import { Dispatch } from "redux"
 import { useDispatch } from "react-redux"

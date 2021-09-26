@@ -8,6 +8,7 @@ export interface IArticle {
     body: string
   }
   
+
 export type ArticleState = {
     articles: IArticle[]
 }
