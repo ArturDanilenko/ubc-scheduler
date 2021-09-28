@@ -1,11 +1,9 @@
 package com.ubcscheduler.ubcscheduler.repository;
 
+import com.ubcscheduler.ubcscheduler.model.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.ubcscheduler.ubcscheduler.model.Employee;
-
-//@Repository
-//public interface EmployeeRepository extends JpaRepository<Employee, Long>{
-//
-//}
+@Repository
+public interface CourseRepository extends JpaRepository<Course, Long> {
+}
