@@ -14,6 +14,7 @@ public class Course {
     private String corequisites; //Modified string
     private String requiredSections; //Modified string4
     private short credits;
+    private short year;
 
     public Course(String element) {
         this.courseId = element;
@@ -105,5 +106,14 @@ public class Course {
 
     public void setCredits(short credits) {
         this.credits = credits;
+    }
+
+    @Column(name = "year", nullable = false)
+    public short getYear() {
+        return year;
+    }
+
+    public void setYear(short year) {
+        this.year = year;
     }
 }
