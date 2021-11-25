@@ -9,7 +9,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ScraperUtils {
+    public static void executeScraperScript(){
+        //ArrayList<String> courseCodes = ScraperUtils.getAllCourseCodes();
+        //ArrayList<ArrayList<String>> courseIds = new ArrayList<>();
+        //System.out.println(courseCodes.size());
+        //		for (String courseCode:courseCodes){
+        //			courseIds.add(ScraperUtils.getAllCourseIdsFromCourseCode(courseCode));
+        //		}
 
+        //System.out.println(courseIds.toString());
+        //ArrayList<String> courseIds = ScraperUtils.getAllCourseIdsFromCourseCode("ELEC");
+
+        // returns array of sections [101, L1A...]
+        //ArrayList<String> sections = ScraperUtils.getAllSectionsFromCourseID("ELEC201", "ELEC");
+    }
     // Returns array list with course codes (XXXX)
     public static ArrayList<String> getAllCourseCodes (){
         ArrayList<String> courseCodes = new ArrayList<String>();
