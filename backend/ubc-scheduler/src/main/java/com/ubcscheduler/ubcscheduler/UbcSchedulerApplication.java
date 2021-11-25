@@ -18,19 +18,6 @@ public class UbcSchedulerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(UbcSchedulerApplication.class, args);
-
-		//ArrayList<String> courseCodes = ScraperUtils.getAllCourseCodes();
-		//ArrayList<ArrayList<String>> courseIds = new ArrayList<>();
-		//System.out.println(courseCodes.size());
-//		for (String courseCode:courseCodes){
-//			courseIds.add(ScraperUtils.getAllCourseIdsFromCourseCode(courseCode));
-//		}
-
-		//System.out.println(courseIds.toString());
-		//ArrayList<String> courseIds = ScraperUtils.getAllCourseIdsFromCourseCode("ELEC");
-
-		// returns array of sections [101, L1A...]
-		//ArrayList<String> sections = ScraperUtils.getAllSectionsFromCourseID("ELEC201", "ELEC");
 	}
 
 }
