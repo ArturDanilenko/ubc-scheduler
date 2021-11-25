@@ -12,14 +12,28 @@ export interface IArticle {
 export interface ICourse {
     id: number,
     courseId: string,
-    courseCode: string,
-    courseNumber: string,
-    sections: string,
+    courseName: string,
+    courseDescription: string,
+    sections: ISection[],
     prerequisites: string,
     corequisites: string,
     requiredSections: string,
     credits: number,
     year: number
+}
+
+export interface ISection {
+    sectionCode: string,
+    prof: string,
+    schedule: ISchedule[]
+}
+
+export interface ISchedule {
+    day: string,
+    starttime: number,
+    endTime: number,
+    building: string,
+    room: string
 }
   
 export type ArticleState = {
@@ -27,7 +41,8 @@ export type ArticleState = {
 }
 
 export type CourseState = {
-    courses: ICourse[]
+    courses?: ICourse[],
+    loading: boolean
 }
   
 export type ArticleAction = {
@@ -36,8 +51,8 @@ export type ArticleAction = {
 }
 
 export type CourseAction = {
-    type: string,
-    course: ICourse
+    type: string, 
+    courses?: ICourse[]
 }
   
 export type DispatchType = (args: ArticleAction) => ArticleAction
