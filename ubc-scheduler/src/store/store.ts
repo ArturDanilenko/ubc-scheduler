@@ -8,7 +8,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { ApplicationState } from "../types/commonTypes"
 
 const initialState: ApplicationState = {
-  articleState: undefined
+  articleState: undefined,
+  courseState: undefined
 }
 
 const composeEnhancers = composeWithDevTools({});
