@@ -1,13 +1,16 @@
 import { CourseAction } from "../../Definitions/Types/ActionTypes/CommonActionTypes";
 import { CourseState } from "../../Definitions/Types/StateTypes/CommonStateTypes";
-import {GET_COURSES, COURSES_LOADING } from "../../Definitions/actionTypes";
+import {GET_COURSES, COURSES_LOADING, GET_COURSE_NUMBERS } from "../../Definitions/actionTypes";
+import { ICourseNumbers } from "../../Definitions/Interfaces/CommonInterfaces";
 
 export const initialCourseState: CourseState = {
-  courses: [],
-  loading: false  
+    courses: [],
+    courseNumbers: [],
+    courseCodeSelected: "none",
+    loading: false  
 }
 
-const courseReducer = ( state: CourseState = initialCourseState, action: CourseAction): CourseState => {
+const courseReducer = ( state: CourseState = initialCourseState, action: CourseAction ): CourseState => {
     switch (action.type) {
         case GET_COURSES:
             return{
@@ -19,6 +22,19 @@ const courseReducer = ( state: CourseState = initialCourseState, action: CourseA
             return{
                 ...state,
                 loading: true
+            };
+        case GET_COURSE_NUMBERS:
+            let courseNumbersOld:ICourseNumbers[] | undefined = state.courseNumbers;
+            let currentCourseCode: string = state.courseCodeSelected;
+            if(action.courseNumbers) {
+                courseNumbersOld ? courseNumbersOld.push(action.courseNumbers) : courseNumbersOld = [action.courseNumbers];
+                currentCourseCode = action.courseNumbers.courseCode;
+            }
+            return{
+                ...state,
+                loading: false,
+                courseNumbers: courseNumbersOld,
+                courseCodeSelected: currentCourseCode
             }
         default: 
             return state;

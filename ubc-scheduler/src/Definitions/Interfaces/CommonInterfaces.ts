@@ -11,10 +11,9 @@ export interface ICourse {
     year: number
 }
 
-export interface ISection {
-    sectionCode: string,
-    prof: string,
-    schedule: ISchedule[]
+export interface ICourseNumbers {
+    courseCode: string, 
+    numbers: number[]
 }
 
 export interface ISchedule {
@@ -23,4 +22,10 @@ export interface ISchedule {
     endTime: number,
     building: string,
     room: string
+}
+
+export interface ISection {
+    sectionCode: string,
+    prof: string,
+    schedule: ISchedule[]
 }

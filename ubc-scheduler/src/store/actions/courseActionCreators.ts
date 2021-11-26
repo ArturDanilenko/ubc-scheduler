@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { DispatchTypeCourses } from '../../Definitions/Types/ActionTypes/CommonActionTypes';
-import {GET_COURSES, COURSES_LOADING } from "../../Definitions/actionTypes";
+import {GET_COURSES, COURSES_LOADING, COURSE_NUMBERS_LOADING, GET_COURSE_NUMBERS } from "../../Definitions/actionTypes";
+import { ICourseNumbers } from '../../Definitions/Interfaces/CommonInterfaces';
 
 
 export const getCourses = () => (dispatch:DispatchTypeCourses) =>{
@@ -12,6 +13,28 @@ export const getCourses = () => (dispatch:DispatchTypeCourses) =>{
             courses: res.data
         }));
 }
+
+export const getCourseNumbers = (code: string) => (dispatch:DispatchTypeCourses) =>{
+    dispatch(setCoursesLoading());
+    axios
+        .get('https://e3f8c00b-640c-4fbc-96ba-f4088d1a532a.mock.pstmn.io/api/v1/courseNumbers/'+code)
+        .then(res => {
+            const courseNumbersReceived: ICourseNumbers = {
+                courseCode: code,
+                numbers: res.data
+            };
+            dispatch({
+                type: GET_COURSE_NUMBERS,
+                courseNumbers: courseNumbersReceived
+            })
+        });
+}
+
+export const setCourseNumbersLoading = () =>{
+    return {
+        type: COURSE_NUMBERS_LOADING
+    }
+};
 
 export const setCoursesLoading = () =>{
     return {

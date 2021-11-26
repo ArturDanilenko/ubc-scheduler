@@ -1,8 +1,9 @@
-import { ICourse } from "../../Interfaces/CommonInterfaces"
+import { ICourse, ICourseNumbers } from "../../Interfaces/CommonInterfaces"
 
 export type CourseAction = {
     type: string, 
-    courses?: ICourse[]
+    courses?: ICourse[],
+    courseNumbers?: ICourseNumbers
 }
   
 export type DispatchTypeCourses = (args: CourseAction) => CourseAction

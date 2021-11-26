@@ -1,4 +1,4 @@
-import { ICourse } from "../../Interfaces/CommonInterfaces"
+import { ICourse, ICourseNumbers } from "../../Interfaces/CommonInterfaces"
 
 export interface ApplicationState {
     courseState: CourseState | undefined
@@ -6,5 +6,7 @@ export interface ApplicationState {
 
 export type CourseState = {
     courses?: ICourse[],
+    courseNumbers?: ICourseNumbers[],
+    courseCodeSelected: string,
     loading: boolean
 }

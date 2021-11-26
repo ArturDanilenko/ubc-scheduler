@@ -4,6 +4,7 @@ import { ICourse } from "../Definitions/Interfaces/CommonInterfaces";
 import { ApplicationState } from "../Definitions/Types/StateTypes/CommonStateTypes";
 import "../styles.css"
 import Course from "./Course";
+import FilterTab from "./FilterSelection/FilterTab";
 
 const LandingPage: React.FC = () => {
     const courses: readonly ICourse[]|undefined = useSelector(
@@ -12,14 +13,18 @@ const LandingPage: React.FC = () => {
     );
 
   return (
-    <main>
-      <h1>My Courses</h1>
-      {courses ? courses.map((course: ICourse) => (
-        <Course
-          course={course}
-        />
-      )) : <></>}
-    </main>
+    <React.Fragment>
+      <FilterTab/>
+      <main>
+        
+        <h1>My Courses</h1>
+        {courses ? courses.map((course: ICourse) => (
+          <Course
+            course={course}
+          />
+        )) : <></>}
+      </main>
+    </React.Fragment>
   )
 }
 
