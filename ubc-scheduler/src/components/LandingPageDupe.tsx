@@ -1,8 +1,9 @@
 import * as React from "react"
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { ICourse } from "../Definitions/Interfaces/CommonInterfaces";
+import { ApplicationState } from "../Definitions/Types/StateTypes/CommonStateTypes";
 import { getCourses } from "../store/actions/courseActionCreators";
 import "../styles.css"
-import { ApplicationState, ICourse } from "../types/commonTypes";
 import Course from "./Course";
 
 const LandingPageDupe: React.FC = () => {

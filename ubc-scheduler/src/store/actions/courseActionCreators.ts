@@ -1,8 +1,6 @@
 import axios from 'axios';
-import { 
-    DispatchTypeCourses
-} from "../../types/commonTypes"
-import {GET_COURSES, COURSES_LOADING } from "../actionTypes";
+import { DispatchTypeCourses } from '../../Definitions/Types/ActionTypes/CommonActionTypes';
+import {GET_COURSES, COURSES_LOADING } from "../../Definitions/actionTypes";
 
 
 export const getCourses = () => (dispatch:DispatchTypeCourses) =>{

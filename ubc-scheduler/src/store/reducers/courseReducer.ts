@@ -1,8 +1,6 @@
-import {GET_COURSES, COURSES_LOADING } from "../actionTypes";
-import {
-  CourseState,
-  CourseAction
-} from "../../types/commonTypes";
+import { CourseAction } from "../../Definitions/Types/ActionTypes/CommonActionTypes";
+import { CourseState } from "../../Definitions/Types/StateTypes/CommonStateTypes";
+import {GET_COURSES, COURSES_LOADING } from "../../Definitions/actionTypes";
 
 export const initialCourseState: CourseState = {
   courses: [],

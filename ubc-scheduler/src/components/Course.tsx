@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ICourse } from "../types/commonTypes"
+import { ICourse } from "../Definitions/Interfaces/CommonInterfaces";
 
 type Props = {
   course: ICourse

@@ -1,21 +1,18 @@
 import { createStore, applyMiddleware, Store } from "redux"
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
-import { 
-  DispatchType 
-} from "../types/commonTypes";
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { ApplicationState } from "../types/commonTypes"
+import { ApplicationState } from "../Definitions/Types/StateTypes/CommonStateTypes";
+import { DispatchTypeCourses } from "../Definitions/Types/ActionTypes/CommonActionTypes";
 
 const initialState: ApplicationState = {
-  articleState: undefined,
   courseState: undefined
 }
 
 const composeEnhancers = composeWithDevTools({});
 // Use any for now, replace with stricted type
 const store: Store<ApplicationState> & {
-    dispatch: DispatchType
+    dispatch: DispatchTypeCourses
   } = createStore(rootReducer, initialState, composeEnhancers(applyMiddleware(thunk)))
 
 export default store;

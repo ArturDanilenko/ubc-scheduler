@@ -1,7 +1,8 @@
 import * as React from "react"
 import { shallowEqual, useSelector } from "react-redux";
+import { ICourse } from "../Definitions/Interfaces/CommonInterfaces";
+import { ApplicationState } from "../Definitions/Types/StateTypes/CommonStateTypes";
 import "../styles.css"
-import { ApplicationState, ICourse } from "../types/commonTypes";
 import Course from "./Course";
 
 const LandingPage: React.FC = () => {
