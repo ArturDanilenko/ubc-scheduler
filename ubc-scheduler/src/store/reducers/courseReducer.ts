@@ -1,78 +1,47 @@
-import * as actionTypes from "../actionTypes";
-import {
-  CourseState,
-  CourseAction,
-  ICourse
-} from "../../types/commonTypes";
+import { CourseAction } from "../../Definitions/Types/ActionTypes/CommonActionTypes";
+import { CourseState } from "../../Definitions/Types/StateTypes/CommonStateTypes";
+import {GET_COURSES, COURSES_LOADING, GET_COURSE_NUMBERS } from "../../Definitions/actionTypes";
+import { ICourseNumbers } from "../../Definitions/Interfaces/CommonInterfaces";
 
 export const initialCourseState: CourseState = {
-  courses: [
-    {
-        id: 1,
-        courseId: "ELEC221",
-        courseCode: "ELEC",
-        courseNumber: "221",
-        sections: "202",
-        prerequisites: "PHYS157",
-        corequisites: "",
-        requiredSections: "LABARATORY, LECTURE",
-        credits: 2,
-        year: 2
-        },
-    {
-        id: 2,
-        courseId: "ELEC321",
-        courseCode: "ELEC",
-        courseNumber: "321",
-        sections: "102",
-        prerequisites: "ELEC221",
-        corequisites: "",
-        requiredSections: "LECTURE, TUTORIAL",
-        credits: 4,
-        year: 3
-    },
-    {
-        id: 3,
-        courseId: "ELEC331",
-        courseCode: "ELEC",
-        courseNumber: "331",
-        sections: "101",
-        prerequisites: "CPSC259",
-        corequisites: "",
-        requiredSections: "LECTURE, TUTORIAL",
-        credits: 4,
-        year: 3
-        }
-    ]
+    courses: [],
+    courseNumbers: [],
+    courseCodeSelected: "none",
+    loading: false  
 }
 
-const courseReducer = (
-    state: CourseState = initialCourseState,
-    action: CourseAction
-  ): CourseState => {
+const courseReducer = ( state: CourseState = initialCourseState, action: CourseAction ): CourseState => {
     switch (action.type) {
-      case actionTypes.ADD_COURSE:
-        const newCourse: ICourse = {
-            id: 1,
-            courseId: "ELEC221",
-            courseCode: "ELEC",
-            courseNumber: "221",
-            sections: "202",
-            prerequisites: "PHYS157",
-            corequisites: "",
-            requiredSections: "LABARATORY, LECTURE",
-            credits: 2,
-            year: 2
-        }
-        return {
-          ...state,
-          courses: state.courses.concat(newCourse),
-        }
-      default: 
-        return state;
+        case GET_COURSES:
+            return{
+            ...state,
+            courses: action.courses,
+            loading: false
+            };
+        case COURSES_LOADING:
+            return{
+                ...state,
+                loading: true
+            };
+        case GET_COURSE_NUMBERS:
+            let courseNumbersOld:ICourseNumbers[] | undefined = state.courseNumbers;
+            let currentCourseCode: string = state.courseCodeSelected;
+            if(action.courseNumbers) {
+                if(courseNumbersOld === undefined) courseNumbersOld = [action.courseNumbers];
+                else if(!courseNumbersOld.some(courseNumber=> courseNumber.courseCode === action.courseNumbers?.courseCode)) courseNumbersOld.push(action.courseNumbers)
+                currentCourseCode = action.courseNumbers.courseCode;
+            }
+            return{
+                ...state,
+                loading: false,
+                courseNumbers: courseNumbersOld,
+                courseCodeSelected: currentCourseCode
+            }
+        default: 
+            return state;
     }
-  }
+}
 
-  export const courseSelector = (state: CourseState, code: string) => state.courses.filter(course => course.courseCode === code);
+  //export const courseSelector = (state: CourseState, code: string) => state.courses.filter(course => course.courseCode === code);
   
   export default courseReducer;
