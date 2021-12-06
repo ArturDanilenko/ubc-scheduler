@@ -27,7 +27,8 @@ const courseReducer = ( state: CourseState = initialCourseState, action: CourseA
             let courseNumbersOld:ICourseNumbers[] | undefined = state.courseNumbers;
             let currentCourseCode: string = state.courseCodeSelected;
             if(action.courseNumbers) {
-                courseNumbersOld ? courseNumbersOld.push(action.courseNumbers) : courseNumbersOld = [action.courseNumbers];
+                if(courseNumbersOld === undefined) courseNumbersOld = [action.courseNumbers];
+                else if(!courseNumbersOld.some(courseNumber=> courseNumber.courseCode === action.courseNumbers?.courseCode)) courseNumbersOld.push(action.courseNumbers)
                 currentCourseCode = action.courseNumbers.courseCode;
             }
             return{
