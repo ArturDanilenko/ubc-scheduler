@@ -61,7 +61,11 @@ const queryBuilderReducer = ( state: QueryBuilderState = initialQueryState, acti
             return {
                 ...state,
                 courseCodeSelected: action.courseCode ? action.courseCode : "none"
-            };   
+            };
+        case queryActionTypes.SEND_QUERY:
+            return {
+                ...state
+            }
         default: 
             return state;
     }

@@ -23,6 +23,10 @@ export function selectCourseNumber (state: ApplicationState) {
     return state.queryBuilderState.courseNumberSelected;
 };
 
+export function selectQueriedCourses (state: ApplicationState) {
+    return state.queryBuilderState.queryEntryList;
+}
+
 export const selectCourseNumbersByCourseCode = createSelector(
     selectCourseNumbers,
     selectCourseCode,
@@ -47,3 +51,4 @@ export const selectFormFields = createSelector(
         return entry;
     }
 );
+

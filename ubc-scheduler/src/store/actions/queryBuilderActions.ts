@@ -3,6 +3,10 @@ import { ADD_QUERY_PARAMETERS, queryActionTypes } from "../../Definitions/action
 import { ICourseNumbers, IQueryBuilderEntry, ISelectedData } from '../../Definitions/Interfaces/CommonInterfaces';
 import axios from 'axios';
 
+export const sendQuery = () => ( dispatch:DispatchTypeQueryBuilder ) => {
+    console.log('query sent');
+};
+
 export const setQueryParameters = (entry: IQueryBuilderEntry) => (dispatch:DispatchTypeQueryBuilder) =>{
     dispatch({
         type: ADD_QUERY_PARAMETERS,

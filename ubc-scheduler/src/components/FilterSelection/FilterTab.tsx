@@ -34,7 +34,7 @@ const FilterTab: React.FC = () => {
             <GeneralForm name={"Year"} entryList={tempListYear} onSelect={setSelectedParameters}/>
             <GeneralForm name={"Course Number"} entryList={courseNumbers} onSelect={setSelectedParameters}/>
             <GeneralForm name={"Term"} entryList={listTerms} onSelect={setSelectedParameters}/>
-            <GeneralButton name={'Add criteria'} formInput={formEntries} onClick={setQueryParameters}/>
+            <GeneralButton name={'Add criteria'} formInput={formEntries} onClick={setQueryParameters} style={{margin: '20px'}}/>
         </Box>
     )
 }
