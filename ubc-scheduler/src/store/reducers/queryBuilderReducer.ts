@@ -1,7 +1,7 @@
 import { QueryBuilderAction } from "../../Definitions/Types/ActionTypes/CommonActionTypes";
 import { QueryBuilderState } from "../../Definitions/Types/StateTypes/CommonStateTypes";
 import {
-    ADD_QUERY_PARAMETERS, GET_COURSE_NUMBERS, queryActionTypes
+    ADD_QUERY_PARAMETERS, queryActionTypes
 } from "../../Definitions/actionTypes";
 import { ICourseNumbers, IQueryBuilderEntry } from "../../Definitions/Interfaces/CommonInterfaces";
 
@@ -27,19 +27,20 @@ const queryBuilderReducer = ( state: QueryBuilderState = initialQueryState, acti
                     queryEntry
                 ]
             };
-        case GET_COURSE_NUMBERS:
-            let courseNumbersOld:ICourseNumbers[] | undefined = state.courseNumbers;
-            let currentCourseCode: string = state.courseCodeSelected;
+        case queryActionTypes.GET_COURSE_NUMBERS:
+            let courseNumbers: ICourseNumbers[] = state.courseNumbers ? [...state.courseNumbers] : [];
             if(action.courseNumbers) {
-                if(courseNumbersOld === undefined) courseNumbersOld = [action.courseNumbers];
-                else if(!courseNumbersOld.some(courseNumber=> courseNumber.courseCode === action.courseNumbers?.courseCode)) courseNumbersOld.push(action.courseNumbers)
-                currentCourseCode = action.courseNumbers.courseCode;
+                if(courseNumbers === undefined) courseNumbers = [action.courseNumbers];
+                else if(!courseNumbers.some(courseNumber => courseNumber.courseCode === action.courseNumbers?.courseCode)) {
+                    courseNumbers.push(action.courseNumbers)
+                }
             };
             return{
                 ...state,
                 loading: false,
-                courseNumbers: courseNumbersOld,
-                courseCodeSelected: currentCourseCode
+                courseNumbers: [
+                    ...courseNumbers
+                ]
             };
         case queryActionTypes.SET_SELECTED_COURSE_NUMBER:
             return {

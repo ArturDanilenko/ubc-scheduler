@@ -16,7 +16,6 @@ const GeneralButton: React.FC<GeneralButtonProps> = (props: GeneralButtonProps) 
         if(!props.formInput?.courseCode) alert("You have to enter at least course code...");
 
         else {
-        // setValue(event.target.value as string);
             const inputValue: IQueryBuilderEntry = {
                 courseCode: props.formInput.courseCode,
                 year: props.formInput.year,
@@ -25,7 +24,6 @@ const GeneralButton: React.FC<GeneralButtonProps> = (props: GeneralButtonProps) 
             };
 
             if(props.onClick){
-                console.log(inputValue);
                 dispatch(props.onClick(inputValue));
             }
         }

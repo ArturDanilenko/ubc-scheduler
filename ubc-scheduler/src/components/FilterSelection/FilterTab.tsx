@@ -3,7 +3,7 @@ import * as React from "react";
 import { shallowEqual, useSelector } from "react-redux";
 import { IQueryBuilderEntry } from "../../Definitions/Interfaces/CommonInterfaces";
 import { selectCourseNumbersByCourseCode, selectFormFields } from "../../Selectors/queryBuilderSelectors";
-import { getCourseNumbers, setQueryParameters, setSelectedParameters } from "../../store/actions/queryBuilderActions";
+import { setQueryParameters, setSelectedParameters } from "../../store/actions/queryBuilderActions";
 import GeneralButton from "../General/GeneralButton";
 import GeneralForm from "../General/GeneralForm"
 
@@ -30,10 +30,10 @@ const FilterTab: React.FC = () => {
 
     return (
         <Box sx={{display:"flex", justifyContent:"center"}}>
-            <GeneralForm name={"Course Code"} entryList={tempListCode} onSelect={getCourseNumbers}/>
-            <GeneralForm name={"Year"} entryList={tempListYear} onSelect2={setSelectedParameters}/>
-            <GeneralForm name={"Course Number"} entryList={courseNumbers} onSelect2={setSelectedParameters}/>
-            <GeneralForm name={"Term"} entryList={listTerms} onSelect2={setSelectedParameters}/>
+            <GeneralForm name={"Course Code"} entryList={tempListCode} onSelect={setSelectedParameters}/>
+            <GeneralForm name={"Year"} entryList={tempListYear} onSelect={setSelectedParameters}/>
+            <GeneralForm name={"Course Number"} entryList={courseNumbers} onSelect={setSelectedParameters}/>
+            <GeneralForm name={"Term"} entryList={listTerms} onSelect={setSelectedParameters}/>
             <GeneralButton name={'Add criteria'} formInput={formEntries} onClick={setQueryParameters}/>
         </Box>
     )

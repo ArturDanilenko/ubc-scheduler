@@ -4,12 +4,12 @@ import Box from '@mui/material/Box';
 import { useDispatch } from "react-redux";
 import { ISelectedData } from "../../Definitions/Interfaces/CommonInterfaces";
 import { queryActionTypes } from "../../Definitions/actionTypes";
+import { getActionTypeByFieldName } from "../../store/actions/actionUtils";
 
 interface GeneralFormProps {
     name: string,
     entryList: string[] | number[],
-    onSelect?: (code: string) => void,
-    onSelect2?: (data: ISelectedData, paramType: queryActionTypes) => void
+    onSelect?: (data: ISelectedData, paramType: queryActionTypes) => void,
 }
 
 const GeneralForm: React.FC<GeneralFormProps> = (props: GeneralFormProps) => {
@@ -20,28 +20,11 @@ const GeneralForm: React.FC<GeneralFormProps> = (props: GeneralFormProps) => {
     const handleChange = (event: SelectChangeEvent<string>) => {
         setValue(event.target.value as string);
         if(props.onSelect){
-            dispatch(props.onSelect(event.target.value));
-        }
-        if(props.onSelect2){
             let data : ISelectedData = {};
-            let type : queryActionTypes;
-            data.numeric = parseInt(event.target.value, 10);
-            switch(props.name) {
-                case "Year":
-                    type = queryActionTypes.SET_SELECTED_YEAR;
-                    break;
-                case "Term":
-                    type = queryActionTypes.SET_SELECTED_TERM;
-                    break;
-                case "Course Number":
-                    type = queryActionTypes.SET_SELECTED_COURSE_NUMBER;
-                    break;
-                //TODO: Add a better defualt
-                default: 
-                    type = queryActionTypes.SET_SELECTED_COURSE_NUMBER; 
-                    break;
-            };
-            dispatch(props.onSelect2(data, type));
+            let type : queryActionTypes = getActionTypeByFieldName(props.name);;
+            if (type === queryActionTypes.SET_SELECTED_COURSE_CODE) data.written = event.target.value;
+            else data.numeric = parseInt(event.target.value, 10);
+            dispatch(props.onSelect(data, type));
         }
     };
 
@@ -56,7 +39,7 @@ const GeneralForm: React.FC<GeneralFormProps> = (props: GeneralFormProps) => {
                     onChange={handleChange}
                 >
                     {props.entryList.map((entry: string | number) => (
-                            <MenuItem value={entry}>{entry}</MenuItem>
+                            <MenuItem key={entry} value={entry}>{entry}</MenuItem>
                     ))}
                 </Select>
             </FormControl>
