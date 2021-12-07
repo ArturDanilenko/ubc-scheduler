@@ -4,9 +4,11 @@ import rootReducer from './reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { ApplicationState } from "../Definitions/Types/StateTypes/CommonStateTypes";
 import { DispatchTypeCourses } from "../Definitions/Types/ActionTypes/CommonActionTypes";
+import { initialQueryState } from "./reducers/queryBuilderReducer";
 
 const initialState: ApplicationState = {
-  courseState: undefined
+    courseState: undefined,
+    queryBuilderState: initialQueryState
 }
 
 const composeEnhancers = composeWithDevTools({});

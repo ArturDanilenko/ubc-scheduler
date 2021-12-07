@@ -14,7 +14,19 @@ export interface ICourse {
 export interface ICourseNumbers {
     courseCode: string, 
     numbers: number[]
+};
+
+export interface ISelectedData {
+    numeric?: number,
+    written?: string
 }
+
+export interface IQueryBuilderEntry {
+    courseCode: string,
+    year?: number,
+    courseNumber?: number,
+    term?: number 
+};
 
 export interface ISchedule {
     day: string,
