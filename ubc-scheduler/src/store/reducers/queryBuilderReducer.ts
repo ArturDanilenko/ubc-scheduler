@@ -3,16 +3,16 @@ import { QueryBuilderState } from "../../Definitions/Types/StateTypes/CommonStat
 import {
     ADD_QUERY_PARAMETERS, queryActionTypes
 } from "../../Definitions/actionTypes";
-import { IQueryBuilderEntry } from "../../Definitions/Interfaces/QueryBuilderInterfaces";
+import { IQueryBuilderEntry, QUERY_BUILDER_DATAVALUES } from "../../Definitions/Interfaces/QueryBuilderInterfaces";
 import { ICourseNumbers } from "../../Definitions/Interfaces/CourseInterfaces";
 
 export const initialQueryState: QueryBuilderState = {
     queryEntryList: [],
     courseNumbers: [],
     courseCodeSelected: "",
-    courseNumberSelected: 0,
-    yearSelected: -1,
-    termSelected: 3,
+    courseNumberSelected: QUERY_BUILDER_DATAVALUES.NO_COURSES_SELECTED,
+    yearSelected: QUERY_BUILDER_DATAVALUES.NO_YEAR_SELECTED,
+    termSelected: QUERY_BUILDER_DATAVALUES.BOTH_TERMS_SELECTED,
     loading: false
 };
 
