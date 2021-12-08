@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import * as React from "react"
 import { shallowEqual, useSelector } from "react-redux";
-import { IQueryBuilderEntry } from "../Definitions/Interfaces/CommonInterfaces";
+import { IQueryBuilderEntry } from "../Definitions/Interfaces/QueryBuilderInterfaces";
 import { selectQueriedCourses } from "../Selectors/queryBuilderSelectors";
 import { processQuery } from "../store/actions/courseActionCreators";
 import "../styles.css"

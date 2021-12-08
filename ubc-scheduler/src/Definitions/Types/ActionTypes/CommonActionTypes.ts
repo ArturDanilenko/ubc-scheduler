@@ -1,4 +1,5 @@
-import { ICourse, ICourseNumbers, IQueryBuilderEntry } from "../../Interfaces/CommonInterfaces";
+import { IQueryBuilderEntry } from "../../Interfaces/QueryBuilderInterfaces";
+import { ICourse, ICourseNumbers } from "../../Interfaces/CourseInterfaces";
 
 export type CourseAction = {
     type: string, 

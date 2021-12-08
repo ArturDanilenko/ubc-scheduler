@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { IQueryBuilderEntry } from "../Definitions/Interfaces/CommonInterfaces";
+import { IQueryBuilderEntry } from "../Definitions/Interfaces/QueryBuilderInterfaces";
 import { ApplicationState } from "../Definitions/Types/StateTypes/CommonStateTypes";
 
 export function selectCourseNumbers (state: ApplicationState) {

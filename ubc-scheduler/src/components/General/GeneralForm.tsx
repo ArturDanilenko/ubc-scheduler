@@ -2,7 +2,7 @@ import * as React from "react"
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material"
 import Box from '@mui/material/Box';
 import { useDispatch } from "react-redux";
-import { ISelectedData } from "../../Definitions/Interfaces/CommonInterfaces";
+import { ISelectedData } from "../../Definitions/Interfaces/QueryBuilderInterfaces";
 import { queryActionTypes } from "../../Definitions/actionTypes";
 import { getActionTypeByFieldName } from "../../store/actions/actionUtils";
 

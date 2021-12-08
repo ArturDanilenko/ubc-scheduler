@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { DispatchTypeCourses } from '../../Definitions/Types/ActionTypes/CommonActionTypes';
 import {GET_COURSES, COURSES_LOADING, COURSE_NUMBERS_LOADING } from "../../Definitions/actionTypes";
-import { IQueryBuilderEntry } from '../../Definitions/Interfaces/CommonInterfaces';
+import { IQueryBuilderEntry } from '../../Definitions/Interfaces/QueryBuilderInterfaces';
 import { queryProcessor } from './queryProcessor';
 
 export const processQuery = (queryEntryList: IQueryBuilderEntry[]) => ( dispatch: DispatchTypeCourses ) => {

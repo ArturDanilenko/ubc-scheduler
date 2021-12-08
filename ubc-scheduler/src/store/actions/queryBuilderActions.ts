@@ -1,7 +1,8 @@
 import { DispatchTypeQueryBuilder } from '../../Definitions/Types/ActionTypes/CommonActionTypes';
 import { ADD_QUERY_PARAMETERS, queryActionTypes } from "../../Definitions/actionTypes";
-import { ICourseNumbers, IQueryBuilderEntry, ISelectedData } from '../../Definitions/Interfaces/CommonInterfaces';
+import { IQueryBuilderEntry, ISelectedData } from '../../Definitions/Interfaces/QueryBuilderInterfaces';
 import axios from 'axios';
+import { ICourseNumbers } from '../../Definitions/Interfaces/CourseInterfaces';
 
 export const setQueryParameters = (entry: IQueryBuilderEntry) => (dispatch:DispatchTypeQueryBuilder) =>{
     dispatch({

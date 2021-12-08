@@ -1,7 +1,7 @@
 import { Box } from "@mui/system";
 import * as React from "react";
 import { shallowEqual, useSelector } from "react-redux";
-import { IQueryBuilderEntry } from "../../Definitions/Interfaces/CommonInterfaces";
+import { IQueryBuilderEntry } from "../../Definitions/Interfaces/QueryBuilderInterfaces";
 import { selectCourseNumbersByCourseCode, selectFormFields } from "../../Selectors/queryBuilderSelectors";
 import { setQueryParameters, setSelectedParameters } from "../../store/actions/queryBuilderActions";
 import GeneralButton from "../General/GeneralButton";

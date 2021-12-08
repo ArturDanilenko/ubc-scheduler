@@ -1,6 +1,6 @@
 import * as React from "react"
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { ICourse } from "../Definitions/Interfaces/CommonInterfaces";
+import { ICourse } from "../Definitions/Interfaces/CourseInterfaces";
 import { ApplicationState } from "../Definitions/Types/StateTypes/CommonStateTypes";
 import { getCourses } from "../store/actions/courseActionCreators";
 import "../styles.css"

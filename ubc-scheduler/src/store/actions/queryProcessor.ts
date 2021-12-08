@@ -1,4 +1,4 @@
-import { IQueryBuilderEntry } from "../../Definitions/Interfaces/CommonInterfaces";
+import { IQueryBuilderEntry } from "../../Definitions/Interfaces/QueryBuilderInterfaces";
 import { IFilterByCourseNumber, IFilterByYear, IQuery, IQueryPayload } from "../../Definitions/Interfaces/QueryProcessorInterfaces";
 
 // 0:
@@ -37,7 +37,6 @@ export function queryProcessor (list: IQueryBuilderEntry[]) {
 
         //Remove processed specifications
         list = list.filter( entry => entry.courseCode !== courseCode);
-
     }
 
     return query;
@@ -57,7 +56,7 @@ const createQueryPayloadForCourseCode = (entries: IQueryBuilderEntry[]) => {
 
     queryPayload.courseCode = entries[0].courseCode;
 
-    let courseNumberFitlers: IFilterByCourseNumber[] = [];
+    let courseNumberFilters: IFilterByCourseNumber[] = [];
     let yearFilters: IFilterByYear[] = [];
 
     // Assuming each entry is unique 
@@ -68,7 +67,7 @@ const createQueryPayloadForCourseCode = (entries: IQueryBuilderEntry[]) => {
                 courseNumber: entry.courseNumber,
                 term: entry.term ? entry.term : 0 //ENUM
             };
-            courseNumberFitlers.push(courseNumberFitler);
+            courseNumberFilters.push(courseNumberFitler);
         }
         else if (entry.year) {
             // Means there is a filter by year and possibly term
@@ -95,7 +94,7 @@ const createQueryPayloadForCourseCode = (entries: IQueryBuilderEntry[]) => {
     };
 
     queryPayload.filters.yearFilters = yearFilters;
-    queryPayload.filters.courseNumberFilters = courseNumberFitlers;
+    queryPayload.filters.courseNumberFilters = courseNumberFilters;
 
     return queryPayload;
 };

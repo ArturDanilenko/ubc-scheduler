@@ -3,7 +3,8 @@ import { QueryBuilderState } from "../../Definitions/Types/StateTypes/CommonStat
 import {
     ADD_QUERY_PARAMETERS, queryActionTypes
 } from "../../Definitions/actionTypes";
-import { ICourseNumbers, IQueryBuilderEntry } from "../../Definitions/Interfaces/CommonInterfaces";
+import { IQueryBuilderEntry } from "../../Definitions/Interfaces/QueryBuilderInterfaces";
+import { ICourseNumbers } from "../../Definitions/Interfaces/CourseInterfaces";
 
 export const initialQueryState: QueryBuilderState = {
     queryEntryList: [],

@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Button } from "@mui/material"
 import { useDispatch } from "react-redux";
-import { IQueryBuilderEntry } from "../../Definitions/Interfaces/CommonInterfaces";
+import { IQueryBuilderEntry } from "../../Definitions/Interfaces/QueryBuilderInterfaces";
 
 interface IButtonStyle {
     margin: string

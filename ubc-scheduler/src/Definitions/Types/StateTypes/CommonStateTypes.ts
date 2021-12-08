@@ -1,8 +1,7 @@
 import {
-    ICourse,
-    ICourseNumbers,
     IQueryBuilderEntry
-} from "../../Interfaces/CommonInterfaces";
+} from "../../Interfaces/QueryBuilderInterfaces";
+import { ICourse, ICourseNumbers } from "../../Interfaces/CourseInterfaces";
 
 export interface ApplicationState {
     courseState: CourseState | undefined,
