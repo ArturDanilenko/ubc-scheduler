@@ -3,7 +3,7 @@ import * as React from "react"
 import { shallowEqual, useSelector } from "react-redux";
 import { IQueryBuilderEntry } from "../Definitions/Interfaces/CommonInterfaces";
 import { selectQueriedCourses } from "../Selectors/queryBuilderSelectors";
-import { sendQuery } from "../store/actions/queryBuilderActions";
+import { processQuery } from "../store/actions/courseActionCreators";
 import "../styles.css"
 import FilterTab from "./FilterSelection/FilterTab";
 import SelectedCourseDisplay from "./FilterSelection/SelectedCourseDisplay";
@@ -20,7 +20,7 @@ const LandingPage: React.FC = () => {
             <FilterTab/>
             <SelectedCourseDisplay/>
             <Box sx={{display:"flex", justifyContent:"center"}}>
-                <GeneralButton name={"Fetch course info"} queryInput={queriedCourses} submitQuery={sendQuery}/>
+                <GeneralButton name={"Fetch course info"} queryInput={queriedCourses} submitQuery={processQuery}/>
             </Box>
         </React.Fragment>
     )

@@ -26,7 +26,7 @@ const SelectedCourseDisplay: React.FC = () => {
         <List sx={style} component="nav" aria-label="mailbox folders">
             {queriedCourses ? queriedCourses.map((queriedCourse: IQueryBuilderEntry) => (
             <ListItem>
-                <ListItemText primary={queriedCourse.courseCode} />
+                <ListItemText primary={queriedCourse.courseCode} secondary={`Year: ${queriedCourse.year} Term: ${queriedCourse.term} Course Number: ${queriedCourse.courseNumber}`}/>
             </ListItem>
             )) : <></>}
         </List>
