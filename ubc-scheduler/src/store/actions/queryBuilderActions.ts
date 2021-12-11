@@ -1,12 +1,21 @@
 import { DispatchTypeQueryBuilder } from '../../Definitions/Types/ActionTypes/CommonActionTypes';
-import { ADD_QUERY_PARAMETERS, queryActionTypes } from "../../Definitions/actionTypes";
+import { queryActionTypes } from "../../Definitions/actionTypes";
 import { IQueryBuilderEntry, ISelectedData } from '../../Definitions/Interfaces/QueryBuilderInterfaces';
 import axios from 'axios';
 import { ICourseNumbers } from '../../Definitions/Interfaces/CourseInterfaces';
+import { VALIDATOR_RESPONSES } from '../../Definitions/Interfaces/UtilsInterfaces';
 
-export const setQueryParameters = (entry: IQueryBuilderEntry) => (dispatch:DispatchTypeQueryBuilder) =>{
+export const addQueryBuilderEntry = (entry: IQueryBuilderEntry, status: VALIDATOR_RESPONSES) => (dispatch:DispatchTypeQueryBuilder) =>{
+    let type: queryActionTypes;
+    switch (status) {
+        case VALIDATOR_RESPONSES.SUPER_SET:
+            type = queryActionTypes.ADD_QUERY_PARAMETERS_AND_REMOVE_SUBSETS;
+            break;
+        default:
+            type = queryActionTypes.ADD_QUERY_PARAMETERS
+    }
     dispatch({
-        type: ADD_QUERY_PARAMETERS,
+        type,
         queryEntry: entry
     });
 };

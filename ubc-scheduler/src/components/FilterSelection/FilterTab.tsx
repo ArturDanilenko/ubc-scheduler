@@ -3,7 +3,7 @@ import * as React from "react";
 import { shallowEqual, useSelector } from "react-redux";
 import { IQueryBuilderEntry } from "../../Definitions/Interfaces/QueryBuilderInterfaces";
 import { selectCourseNumbersByCourseCode, selectFormFields, selectQueriedCourses } from "../../Selectors/queryBuilderSelectors";
-import { setQueryParameters, setSelectedParameters } from "../../store/actions/queryBuilderActions";
+import { addQueryBuilderEntry, setSelectedParameters } from "../../store/actions/queryBuilderActions";
 import { queryBuilderValidator } from "../../Utils/QueryBuilderValidation";
 import GeneralButton from "../General/GeneralButton";
 import GeneralForm from "../General/GeneralForm"
@@ -31,7 +31,7 @@ const FilterTab: React.FC = () => {
         "MATH",
         'FAKE'
     ];
-    const tempListYear: number[] = [1, 2, 3, 4];
+    const tempListYear: string[] = ['All', '1', '2', '3', '4'];
     const listTerms: string[] = ["1","2","Both"];
 
     return (
@@ -43,7 +43,7 @@ const FilterTab: React.FC = () => {
             <GeneralButton 
                 name={'Add criteria'}
                 formInput={formEntries}
-                onClick={setQueryParameters}
+                onClick={addQueryBuilderEntry}
                 queryInput={queriedCourses}
                 validator={queryBuilderValidator}
                 style={{margin: '20px'}}

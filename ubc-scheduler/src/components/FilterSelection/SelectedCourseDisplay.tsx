@@ -2,7 +2,6 @@ import * as React from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import Divider from '@mui/material/Divider';
 import { IQueryBuilderEntry } from '../../Definitions/Interfaces/QueryBuilderInterfaces';
 import { selectQueriedCourses } from '../../Selectors/queryBuilderSelectors';
 import { shallowEqual, useSelector } from 'react-redux';
@@ -25,7 +24,7 @@ const SelectedCourseDisplay: React.FC = () => {
     return (
         <List sx={style} component="nav" aria-label="mailbox folders">
             {queriedCourses ? queriedCourses.map((queriedCourse: IQueryBuilderEntry) => (
-            <ListItem>
+            <ListItem key={queriedCourse.courseCode+queriedCourse.courseNumber+queriedCourse.year+queriedCourse.term}>
                 <ListItemText primary={queriedCourse.courseCode} secondary={`Year: ${queriedCourse.year} Term: ${queriedCourse.term} Course Number: ${queriedCourse.courseNumber}`}/>
             </ListItem>
             )) : <></>}

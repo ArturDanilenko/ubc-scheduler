@@ -3,20 +3,17 @@ import { Alert, Button } from "@mui/material"
 import { useDispatch } from "react-redux";
 import { IQueryBuilderEntry } from "../../Definitions/Interfaces/QueryBuilderInterfaces";
 import { IValidatorReturn, VALIDATOR_RESPONSES } from "../../Definitions/Interfaces/UtilsInterfaces";
+import { alertStyles } from './GeneralStyles/generalStyles';
 
 interface IButtonStyle {
     margin: string
-};
-
-interface IAlertStyle {
-    display: string
 };
 
 interface GeneralButtonProps {
     name: string,
     formInput?: IQueryBuilderEntry,
     queryInput?: IQueryBuilderEntry[],
-    onClick?: (enteredValues: IQueryBuilderEntry) => void,
+    onClick?: (enteredValues: IQueryBuilderEntry, status: VALIDATOR_RESPONSES) => void,
     submitQuery?: (queryInput: IQueryBuilderEntry[]) => void,
     validator?: (entry: IQueryBuilderEntry, list: IQueryBuilderEntry[]) => IValidatorReturn,
     style?: IButtonStyle
@@ -24,9 +21,8 @@ interface GeneralButtonProps {
 
 const GeneralButton: React.FC<GeneralButtonProps> = (props: GeneralButtonProps) => {
     const dispatch = useDispatch();
-
-    let alertStyle: IAlertStyle = {display: 'none'};
-    let alertText: string = "";
+    const [alertText, setAlertText] = React.useState('');
+    const [alertStyle, setAlertStyle] = React.useState(alertStyles);
 
     const handleClick = () => {
         if (props.submitQuery && (!props.queryInput || props.queryInput.length === 0)) alert('Please select some course criteria');
@@ -44,14 +40,20 @@ const GeneralButton: React.FC<GeneralButtonProps> = (props: GeneralButtonProps) 
                 const {entry, response} = props.validator(inputValue, props.queryInput);
                 console.log(response);
                 if (response.status !== VALIDATOR_RESPONSES.DUPLICATE && response.status !== VALIDATOR_RESPONSES.SUBSET) {
-                    dispatch(props.onClick(inputValue));
+                    dispatch(props.onClick(entry, response.status));
                 }
                 else {
-                    alertText = response.status;
-                    alertStyle.display = 'block';
-                    // setTimeout(function() {
-                    //     alertStyle.display = 'none';
-                    // }, 4000);
+                    setAlertText(response.status);
+                    setAlertStyle({
+                        ...alertStyle,
+                        display: 'flex'
+                    });
+                    setTimeout(function() {
+                        setAlertStyle({
+                            ...alertStyle,
+                            display: 'none'
+                        });
+                    }, 4000);
                 }
             }
         }
@@ -60,7 +62,7 @@ const GeneralButton: React.FC<GeneralButtonProps> = (props: GeneralButtonProps) 
     return (
         <React.Fragment>
             <Button sx={props.style} variant="outlined" onClick={handleClick}>{props.name}</Button>
-            <Alert sx={alertStyle} severity="warning">{alertText}</Alert>
+            <Alert sx={{...alertStyle, position: 'absolute'}} severity="warning">{alertText}</Alert>
         </React.Fragment>
     )
 }
