@@ -2,12 +2,18 @@ import { Box } from "@mui/system";
 import * as React from "react";
 import { shallowEqual, useSelector } from "react-redux";
 import { IQueryBuilderEntry } from "../../Definitions/Interfaces/QueryBuilderInterfaces";
-import { selectCourseNumbersByCourseCode, selectFormFields } from "../../Selectors/queryBuilderSelectors";
+import { selectCourseNumbersByCourseCode, selectFormFields, selectQueriedCourses } from "../../Selectors/queryBuilderSelectors";
 import { setQueryParameters, setSelectedParameters } from "../../store/actions/queryBuilderActions";
+import { queryBuilderValidator } from "../../Utils/QueryBuilderValidation";
 import GeneralButton from "../General/GeneralButton";
 import GeneralForm from "../General/GeneralForm"
 
 const FilterTab: React.FC = () => {
+
+    const queriedCourses: IQueryBuilderEntry[] = useSelector(
+        selectQueriedCourses,
+        shallowEqual
+    );
 
     const courseNumbers: number[] | string[] = useSelector(
         selectCourseNumbersByCourseCode,
@@ -34,7 +40,14 @@ const FilterTab: React.FC = () => {
             <GeneralForm name={"Year"} entryList={tempListYear} onSelect={setSelectedParameters}/>
             <GeneralForm name={"Course Number"} entryList={courseNumbers} onSelect={setSelectedParameters}/>
             <GeneralForm name={"Term"} entryList={listTerms} onSelect={setSelectedParameters}/>
-            <GeneralButton name={'Add criteria'} formInput={formEntries} onClick={setQueryParameters} style={{margin: '20px'}}/>
+            <GeneralButton 
+                name={'Add criteria'}
+                formInput={formEntries}
+                onClick={setQueryParameters}
+                queryInput={queriedCourses}
+                validator={queryBuilderValidator}
+                style={{margin: '20px'}}
+            />
         </Box>
     )
 }

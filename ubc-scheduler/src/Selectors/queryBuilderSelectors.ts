@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { IQueryBuilderEntry } from "../Definitions/Interfaces/QueryBuilderInterfaces";
+import { IQueryBuilderEntry, QUERY_BUILDER_DATAVALUES } from "../Definitions/Interfaces/QueryBuilderInterfaces";
 import { ApplicationState } from "../Definitions/Types/StateTypes/CommonStateTypes";
 
 export function selectCourseNumbers (state: ApplicationState) {
@@ -30,9 +30,12 @@ export function selectQueriedCourses (state: ApplicationState) {
 export const selectCourseNumbersByCourseCode = createSelector(
     selectCourseNumbers,
     selectCourseCode,
-    (courseNumbers, courseCode) => {
-        const courseNums = courseNumbers.filter(courseNumber => courseNumber.courseCode === courseCode);
-        return courseNums ? (courseNums[0] ? courseNums[0].numbers: []) : [];
+    selectYear,
+    (courseNumbers, courseCode, year) => {
+        const filteredCourseNumbers = courseNumbers.filter(courseNumber => courseNumber.courseCode === courseCode);
+        let numbersForChosenCode = filteredCourseNumbers ? (filteredCourseNumbers[0] ? filteredCourseNumbers[0].numbers: []) : [];
+        if (year === QUERY_BUILDER_DATAVALUES.NO_YEAR_SELECTED) return numbersForChosenCode;
+        return numbersForChosenCode.filter(number => Math.floor(number / 100) % 10 === year);
     }
 );
 

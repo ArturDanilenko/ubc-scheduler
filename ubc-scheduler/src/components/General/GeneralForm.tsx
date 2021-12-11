@@ -37,7 +37,7 @@ const GeneralForm: React.FC<GeneralFormProps> = (props: GeneralFormProps) => {
                     placeholder={props.name}
                     label={props.name}
                     onChange={handleChange}
-                    defaultValue="" 
+                    defaultValue={"0"} 
                 >
                     {props.entryList.map((entry: string | number) => (
                             <MenuItem key={entry} value={entry}>{entry}</MenuItem>
