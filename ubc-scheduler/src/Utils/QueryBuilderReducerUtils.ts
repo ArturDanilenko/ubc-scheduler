@@ -1,6 +1,7 @@
 import { ICourseNumbers } from "../Definitions/Interfaces/CourseInterfaces";
 import { IQueryBuilderEntry, QUERY_BUILDER_DATAVALUES } from "../Definitions/Interfaces/QueryBuilderInterfaces";
 import { QueryBuilderState } from "../Definitions/Types/StateTypes/CommonStateTypes";
+import { firstDigit } from "./commonHelpers";
 
 export const addQueryBuilderEntry = (state: QueryBuilderState, entry: IQueryBuilderEntry | undefined) => {
     const queryEntry: IQueryBuilderEntry = entry ? entry : {courseCode: 'undefined'};
@@ -17,7 +18,7 @@ export const addQueryBuilderEntry = (state: QueryBuilderState, entry: IQueryBuil
 export const addQueryBuilderEntryAndRemoveSubset = (state: QueryBuilderState, entry: IQueryBuilderEntry | undefined ) => {
     const queryEntryWithSuperset: IQueryBuilderEntry = entry ? entry : {courseCode: 'undefined'};
     const filteredQueryEntryList = state.queryEntryList.filter(queryEntry => {
-        let firstDigitOfCourseNumber = queryEntry.courseNumber ? Math.floor( queryEntry.courseNumber / 100 ) % 10 : QUERY_BUILDER_DATAVALUES.NO_COURSES_SELECTED;
+        let firstDigitOfCourseNumber = queryEntry.courseNumber ? firstDigit(queryEntry.courseNumber): QUERY_BUILDER_DATAVALUES.NO_COURSES_SELECTED;
         return !(
             queryEntry.courseCode === queryEntryWithSuperset.courseCode &&
             firstDigitOfCourseNumber === queryEntryWithSuperset.year
@@ -65,6 +66,14 @@ export const setNewSelectedTerm = (state: QueryBuilderState, term: number | unde
 };
 
 export const setNewSelectedYear = (state: QueryBuilderState, year: number | undefined ) => {
+    // Check that selected course number is within the new filter 
+    if( firstDigit(state.courseNumberSelected) !== year && year !== QUERY_BUILDER_DATAVALUES.NO_YEAR_SELECTED) {
+        return {
+            ...state,
+            yearSelected: year ? year : QUERY_BUILDER_DATAVALUES.NO_YEAR_SELECTED,
+            courseNumberSelected: QUERY_BUILDER_DATAVALUES.NO_COURSES_SELECTED
+        } as QueryBuilderState;
+    }
     return {
         ...state,
         yearSelected: year ? year : QUERY_BUILDER_DATAVALUES.NO_YEAR_SELECTED

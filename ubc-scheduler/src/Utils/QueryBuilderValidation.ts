@@ -1,5 +1,6 @@
 import { IQueryBuilderEntry, QUERY_BUILDER_DATAVALUES } from "../Definitions/Interfaces/QueryBuilderInterfaces";
 import { IValidatorResponse, VALIDATOR_RESPONSES } from "../Definitions/Interfaces/UtilsInterfaces";
+import { firstDigit } from "./commonHelpers";
 
 export const queryBuilderValidator = (entry: IQueryBuilderEntry, list: IQueryBuilderEntry[]) => {
     // prevent duplicates
@@ -46,7 +47,7 @@ const validateCourseNumberFilter = (entry: IQueryBuilderEntry, list: IQueryBuild
         (listEntry.term !== entry.term && listEntry.term !== QUERY_BUILDER_DATAVALUES.BOTH_TERMS_SELECTED)
     );
     const subset = reducedList.some(listEntry => {
-        const firstDigitOfCourseNumber = entry.courseNumber ? Math.floor(entry.courseNumber/100) % 10 : 0;
+        const firstDigitOfCourseNumber = entry.courseNumber ? firstDigit(entry.courseNumber) : QUERY_BUILDER_DATAVALUES.NO_COURSES_SELECTED;
         console.log(firstDigitOfCourseNumber);
         return listEntry.year === firstDigitOfCourseNumber;
     });
@@ -80,7 +81,7 @@ const validateYearFilter = (entry: IQueryBuilderEntry, list: IQueryBuilderEntry[
     // its a super set if year set by filter and year of an existing course number are the same
     // on top of that, term of the new filter is either both, either same as the one of the existing course num
     const superSet = reducedList.some( listEntry => {
-        const firstDigitOfCourseNumber = listEntry.courseNumber ? Math.floor(listEntry.courseNumber/100) % 10 : 0;
+        const firstDigitOfCourseNumber = listEntry.courseNumber ? firstDigit(listEntry.courseNumber) : QUERY_BUILDER_DATAVALUES.NO_COURSES_SELECTED;
         return entry.year === firstDigitOfCourseNumber && 
         ( 
             entry.term === QUERY_BUILDER_DATAVALUES.BOTH_TERMS_SELECTED || 

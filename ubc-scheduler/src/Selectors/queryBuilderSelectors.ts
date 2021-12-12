@@ -1,6 +1,7 @@
 import { createSelector } from "reselect";
 import { IQueryBuilderEntry, QUERY_BUILDER_DATAVALUES } from "../Definitions/Interfaces/QueryBuilderInterfaces";
 import { ApplicationState } from "../Definitions/Types/StateTypes/CommonStateTypes";
+import { firstDigit } from "../Utils/commonHelpers";
 
 export function selectCourseNumbers (state: ApplicationState) {
     if(state.queryBuilderState?.courseNumbers === undefined) return [];
@@ -35,7 +36,7 @@ export const selectCourseNumbersByCourseCode = createSelector(
         const filteredCourseNumbers = courseNumbers.filter(courseNumber => courseNumber.courseCode === courseCode);
         let numbersForChosenCode = filteredCourseNumbers ? (filteredCourseNumbers[0] ? filteredCourseNumbers[0].numbers: []) : [];
         if (year === QUERY_BUILDER_DATAVALUES.NO_YEAR_SELECTED) return numbersForChosenCode;
-        return numbersForChosenCode.filter(number => Math.floor(number / 100) % 10 === year);
+        return numbersForChosenCode.filter(number => firstDigit(number) === year);
     }
 );
 
