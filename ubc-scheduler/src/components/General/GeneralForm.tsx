@@ -29,6 +29,13 @@ const GeneralForm: React.FC<GeneralFormProps> = (props: GeneralFormProps) => {
         }
     };
 
+    // Handles value range switch
+    if(props.name === "Course Number" && value !== '') {
+        if(!props.entryList.some(number => number === value)) {
+            setValue('');
+        }
+    }
+
     return (
         <Box sx={{ minWidth: "150px", display: "inline-block", padding: "20px" }}>
             <FormControl fullWidth>
