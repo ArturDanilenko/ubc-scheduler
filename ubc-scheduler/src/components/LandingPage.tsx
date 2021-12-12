@@ -1,31 +1,29 @@
+import { Box } from "@mui/material";
 import * as React from "react"
 import { shallowEqual, useSelector } from "react-redux";
-import { ICourse } from "../Definitions/Interfaces/CommonInterfaces";
-import { ApplicationState } from "../Definitions/Types/StateTypes/CommonStateTypes";
+import { IQueryBuilderEntry } from "../Definitions/Interfaces/QueryBuilderInterfaces";
+import { selectQueriedCourses } from "../Selectors/queryBuilderSelectors";
+import { processQuery } from "../store/actions/courseActionCreators";
 import "../styles.css"
-import Course from "./Course";
 import FilterTab from "./FilterSelection/FilterTab";
+import SelectedCourseDisplay from "./FilterSelection/SelectedCourseDisplay";
+import GeneralButton from "./General/GeneralButton";
 
 const LandingPage: React.FC = () => {
-    const courses: readonly ICourse[]|undefined = useSelector(
-        (state: ApplicationState) => state.courseState?.courses,
+    const queriedCourses: IQueryBuilderEntry[] = useSelector(
+        selectQueriedCourses,
         shallowEqual
     );
 
-  return (
-    <React.Fragment>
-      <FilterTab/>
-      <main>
-        
-        <h1>My Courses</h1>
-        {courses ? courses.map((course: ICourse) => (
-          <Course
-            course={course}
-          />
-        )) : <></>}
-      </main>
-    </React.Fragment>
-  )
+    return (
+        <React.Fragment>
+            <FilterTab/>
+            <SelectedCourseDisplay/>
+            <Box sx={{display:"flex", justifyContent:"center"}}>
+                <GeneralButton name={"Fetch course info"} queryInput={queriedCourses} submitQuery={processQuery}/>
+            </Box>
+        </React.Fragment>
+    )
 }
 
 export default LandingPage

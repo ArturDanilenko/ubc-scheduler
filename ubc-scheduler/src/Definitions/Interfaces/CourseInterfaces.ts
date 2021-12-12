@@ -14,7 +14,7 @@ export interface ICourse {
 export interface ICourseNumbers {
     courseCode: string, 
     numbers: number[]
-}
+};
 
 export interface ISchedule {
     day: string,
