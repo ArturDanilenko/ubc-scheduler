@@ -33,16 +33,19 @@ const validateCourseNumberFilter = (entry: IQueryBuilderEntry, list: IQueryBuild
     let response: IValidatorResponse = { status: VALIDATOR_RESPONSES.PASS };
     entry.year = QUERY_BUILDER_DATAVALUES.NO_YEAR_SELECTED;
 
+    // filter out entries that dont match selected course code as they arent relevant
+    const reducedList = list.filter( listEntry => listEntry.courseCode === entry.courseCode);
+
     // Check for dupes, checking course numbers as but also for term similarity
-    const duplicate = list.some(listEntry => 
+    const duplicate = reducedList.some(listEntry => 
         listEntry.courseNumber === entry.courseNumber && 
         (listEntry.term === entry.term || listEntry.term === QUERY_BUILDER_DATAVALUES.BOTH_TERMS_SELECTED)
     );
-    const termAdded = list.some(listEntry => 
+    const termAdded = reducedList.some(listEntry => 
         listEntry.courseNumber === entry.courseNumber &&
         (listEntry.term !== entry.term && listEntry.term !== QUERY_BUILDER_DATAVALUES.BOTH_TERMS_SELECTED)
     );
-    const subset = list.some(listEntry => {
+    const subset = reducedList.some(listEntry => {
         const firstDigitOfCourseNumber = entry.courseNumber ? Math.floor(entry.courseNumber/100) % 10 : 0;
         console.log(firstDigitOfCourseNumber);
         return listEntry.year === firstDigitOfCourseNumber;
@@ -66,13 +69,17 @@ const validateYearFilter = (entry: IQueryBuilderEntry, list: IQueryBuilderEntry[
     // Remove sets if super set is added
     let response: IValidatorResponse = { status: VALIDATOR_RESPONSES.PASS };
 
-    const duplicate = list.some( listEntry => 
+    
+    // filter out entries that dont match selected course code as they arent relevant
+    const reducedList = list.filter( listEntry => listEntry.courseCode === entry.courseCode);
+
+    const duplicate = reducedList.some( listEntry => 
         listEntry.year === entry.year
     );
     
     // its a super set if year set by filter and year of an existing course number are the same
     // on top of that, term of the new filter is either both, either same as the one of the existing course num
-    const superSet = list.some( listEntry => {
+    const superSet = reducedList.some( listEntry => {
         const firstDigitOfCourseNumber = listEntry.courseNumber ? Math.floor(listEntry.courseNumber/100) % 10 : 0;
         return entry.year === firstDigitOfCourseNumber && 
         ( 
