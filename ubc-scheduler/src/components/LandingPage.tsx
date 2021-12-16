@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import * as React from "react"
 import { shallowEqual, useSelector } from "react-redux";
 import { IQueryBuilderEntry } from "../Definitions/Interfaces/QueryBuilderInterfaces";
@@ -17,10 +17,15 @@ const LandingPage: React.FC = () => {
 
     return (
         <React.Fragment>
-            <FilterTab/>
-            <SelectedCourseDisplay/>
-            <Box sx={{display:"flex", justifyContent:"center"}}>
-                <GeneralButton name={"Fetch course info"} queryInput={queriedCourses} submitQuery={processQuery}/>
+            <Box sx={{display: "flex", flexDirection: "column"}}>
+                <Typography variant="h5" m="20px">
+                    Search for Courses 
+                </Typography>
+                <FilterTab/>
+                <SelectedCourseDisplay/>
+                <Box sx={{display:"flex", justifyContent:"center"}}>
+                    <GeneralButton name={"Fetch course info"} queryInput={queriedCourses} submitQuery={processQuery}/>
+                </Box>
             </Box>
         </React.Fragment>
     )

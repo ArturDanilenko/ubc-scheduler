@@ -35,7 +35,7 @@ const FilterTab: React.FC = () => {
     const listTerms: string[] = ["1","2","Both"];
 
     return (
-        <Box sx={{display:"flex", justifyContent:"center"}}>
+        <Box sx={{display:"flex", flexDirection: "row", justifyContent:"center"}}>
             <GeneralForm name={"Course Code"} entryList={tempListCode} onSelect={setSelectedParameters}/>
             <GeneralForm name={"Year"} entryList={tempListYear} onSelect={setSelectedParameters}/>
             <GeneralForm name={"Course Number"} entryList={courseNumbers} onSelect={setSelectedParameters}/>

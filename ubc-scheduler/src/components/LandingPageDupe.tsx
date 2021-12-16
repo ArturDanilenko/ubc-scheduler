@@ -3,7 +3,7 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { ICourse } from "../Definitions/Interfaces/CourseInterfaces";
 import { ApplicationState } from "../Definitions/Types/StateTypes/CommonStateTypes";
 import { getCourses } from "../store/actions/courseActionCreators";
-import "../styles.css"
+import "../styles.css";
 import Course from "./Course";
 
 const LandingPageDupe: React.FC = () => {
